@@ -1,26 +1,330 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Add to globals.css */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* This will offset all scroll-to anchors */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* Or for individual sections */
+section {
+  scroll-margin-top: 80px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* ====== NAME COLOR ====== */
+/* White to light blue gradient for your name */
+.name-gradient {
+  background: linear-gradient(135deg, #ffffff 0%, #e8eef4 50%, #6d8fb8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: name-gradient-animation 4s ease infinite;
+}
+
+@keyframes name-gradient-animation {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* ====== SPECIALIZATION COLOR ====== */
+/* Light blue to dark blue gradient for DevOps Engineer */
+.specialization-gradient {
+  background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 50%, #3b82f6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 200% 200%;
+  animation: specialization-gradient-animation 4s ease infinite;
+}
+
+@keyframes specialization-gradient-animation {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ====== GREETING COLOR ====== */
+/* Ocean blue for "Hey there! 👋 I'm" */
+.greeting-text {
+  color: #4d7cc7; /* Bright ocean blue */
+  font-weight: 400;
+}
+
+/* ====== NAVIGATION DOT ====== */
+.nav-link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.nav-underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(59, 130, 246, 0.2) 50%, 
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.nav-link:hover .nav-underline,
+.nav-link.active .nav-underline {
+  opacity: 1;
+}
+
+@keyframes travel-dot {
+  0% {
+    left: 0%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+.nav-dot {
+  position: absolute;
+  bottom: -5px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3b82f6;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.nav-link:hover .nav-dot {
+  animation: travel-dot 1s ease-in-out forwards;
+}
+
+.nav-link.active .nav-dot {
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 1;
+  animation: none;
+  box-shadow: 
+    0 0 10px rgba(59, 130, 246, 0.8),
+    0 0 20px rgba(59, 130, 246, 0.4);
+}
+
+@keyframes dot-pulse {
+  0%, 100% {
+    transform: translateX(-50%) scale(1);
+    box-shadow: 
+      0 0 10px rgba(59, 130, 246, 0.8),
+      0 0 20px rgba(59, 130, 246, 0.4);
+  }
+  50% {
+    transform: translateX(-50%) scale(1.2);
+    box-shadow: 
+      0 0 15px rgba(59, 130, 246, 1),
+      0 0 30px rgba(59, 130, 246, 0.6);
+  }
+}
+
+.nav-link.active .nav-dot {
+  animation: dot-pulse 2s ease-in-out infinite;
+}
+/* ====== ABOUT ME ANIMATIONS ====== */
+
+.about-gradient {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-subtle-bg {
+  background: linear-gradient(135deg, rgba(30, 58, 138, 0.1) 0%, rgba(30, 64, 175, 0.05) 100%);
+}
+
+.about-border-color {
+  border-color: rgba(59, 130, 246, 0.2);
+}
+
+.about-highlight {
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.15) 0%, rgba(37, 99, 235, 0.1) 100%);
+}
+/* ====== GLASS CARD EFFECT ====== */
+.glass-card {
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(59, 130, 246, 0.15); /* Coordinated blue border */
+  box-shadow: 
+    0 8px 32px rgba(30, 64, 175, 0.1), /* Blue tinted shadow */
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+
+/* ====== EXPERIENCE ANIMATIONS ====== */
+@keyframes ping-slow {
+  0% {
+    transform: scale(1);
+    opacity: 0.2;
+  }
+  70%, 100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.animate-ping-slow {
+  animation: ping-slow 3s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scroll offset for fixed headers */
+.scroll-mt-24 {
+  scroll-margin-top: 6rem;
+}
+
+/* Hover effect for cards */
+.experience-card {
+  transition: all 0.3s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Navigation button animations */
+.nav-button {
+  transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+}
+/* ====== EXPERIENCE SPECIFIC ANIMATIONS ====== */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Circuit pattern animation */
+@keyframes circuit-pulse {
+  0%, 100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.circuit-pattern {
+  animation: circuit-pulse 4s ease-in-out infinite;
+}
+
+/* Experience card specific effects */
+.experience-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.experience-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Timeline node glow */
+.timeline-node {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
+/* Performance bar animation */
+@keyframes progress-fill {
+  from {
+    width: 0;
+  }
+  to {
+    width: var(--target-width);
+  }
+}
+
+.progress-bar {
+  animation: progress-fill 1.5s ease-out forwards;
+}
+
+/* ====== EDUCATION ANIMATIONS ====== */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Education specific glass effect */
+.education-glass {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.6), rgba(15, 23, 42, 0.8));
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Card hover effects */
+.education-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.education-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* Gradient text animation */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-flow {
+  background-size: 200% auto;
+  animation: gradient-flow 3s ease infinite;
 }
