@@ -36,7 +36,7 @@ const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      // Using Formspree for form submission (free tier)
+      // Using Formspree for contact form submission
       const response = await fetch('https://formspree.io/f/xzdbnkvz', {
         method: 'POST',
         headers: {
@@ -122,7 +122,7 @@ const Contact = () => {
   return (
     <section id="contact" className="relative min-h-screen flex flex-col justify-center py-20 px-4 md:px-8 overflow-hidden">
       
-      {/* Hero-like Background */}
+      {/* Hero */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{
@@ -163,7 +163,7 @@ const Contact = () => {
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto w-full">
-        {/* Section header matching Hero style */}
+        {/* Section header with Hero style */}
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -270,19 +270,21 @@ const Contact = () => {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <div className="glass-card p-8 rounded-2xl bg-black/20 backdrop-blur-sm border border-blue-500/20">
-              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+  initial={{ opacity: 0, x: 30 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 0.6 }}
+  viewport={{ once: true }}
+  className="px-4 sm:px-0"
+>
+
+            <div className="glass-card px-6 py-7 sm:p-8 rounded-2xl bg-black/20 backdrop-blur-sm border border-blue-500/20">
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2 justify-center sm:justify-start">
                 <FaPaperPlane className="text-blue-400" />
                 Send a Message
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
                   <div>
                     <label htmlFor="name" className="block text-slate-300 mb-2 flex items-center gap-2">
                       <FaUserAlt className="text-blue-400" />
@@ -402,7 +404,7 @@ const Contact = () => {
           </motion.div>
         </div>
 
-        {/* Footer note */}
+        {/* Footer */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

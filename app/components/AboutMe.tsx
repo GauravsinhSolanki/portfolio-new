@@ -4,8 +4,8 @@ const AboutMe = () => {
   return (
     <section id="about" className="relative py-20 px-4 md:px-8 about-subtle-bg">
       <div className="max-w-6xl mx-auto">
-        {/* Section header - matches Hero but deeper blue */}
-        <div className="flex items-center gap-4 mb-12">
+        {/* Section header */}
+        <div className="flex items-center gap-4 mb-12 justify-center md:justify-start text-center md:text-left">
           <div className="h-px w-20 bg-gradient-to-r from-blue-600 to-cyan-500"></div>
           <h2 className="text-3xl md:text-4xl font-bold">
             <span className="about-gradient">
@@ -15,17 +15,17 @@ const AboutMe = () => {
           <div className="h-px flex-grow bg-gradient-to-l from-blue-600 to-cyan-500"></div>
         </div>
 
-        {/* Content card with coordinated blue theme */}
-        <div className="glass-card p-8 md:p-12 rounded-2xl">
-          {/* Profile badge - deeper blue than Hero */}
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-blue-900/40 to-cyan-900/30 border border-blue-500/30 mb-8">
+        {/* Content card  */}
+        <div className="glass-card px-6 py-7 md:p-12 rounded-2xl">
+          {/* Profile badge */}
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-gradient-to-r from-blue-900/40 to-cyan-900/30 border border-blue-500/30 mb-8 ml-2 sm:ml-0">
             <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
             <span className="text-blue-300 font-medium">Software Engineer</span>
           </div>
 
           {/* Content */}
-          <div className="space-y-6 text-slate-300 text-lg leading-relaxed">
-            <p>
+          <div className="space-y-7 md:space-y-6 text-slate-300 text-base md:text-lg leading-[1.75] md:leading-relaxed px-2 sm:px-0">
+             <p>
               I am a software engineer with a{' '}
               <span className="text-blue-300 font-medium">Master's degree in Applied Computer Science from Dalhousie University</span>
               , currently building and maintaining production systems used in real business environments.
@@ -39,12 +39,12 @@ const AboutMe = () => {
               {' '}rather than working in isolated layers of the stack.
             </p>
 
-            {/* Engineering Philosophy Box - blue theme */}
-            <div className="relative p-6 rounded-xl about-highlight border about-border-color my-8">
+            {/* Engineering Philosophy Box */}
+            <div className="relative p-5 md:p-6 rounded-xl about-highlight border about-border-color my-10 md:my-8">
               <div className="absolute -top-3 left-6 px-4 py-1 bg-gradient-to-r from-blue-700 to-blue-600 rounded-full text-sm font-medium text-white">
                 Engineering Philosophy
               </div>
-              <p className="text-slate-200">
+              <p className="text-slate-200 leading-[1.7]">
                 I care about solid engineering fundamentals. I design systems with{' '}
                 <span className="text-blue-300 font-medium">long term maintainability</span>
                 {' '}in mind, apply{' '}
@@ -65,9 +65,9 @@ const AboutMe = () => {
               {' '}and focused on building systems that last.
             </p>
 
-            {/* Tech keywords - blue theme */}
+            {/* Tech keywords */}
             <div className="pt-8 mt-8 border-t about-border-color">
-              <div className="flex flex-wrap gap-3 justify-center">
+              <div className="flex flex-wrap gap-2 md:gap-3 justify-center">
                 {[
                   'Full-Stack Development',
                   'Cloud Infrastructure',
@@ -91,7 +91,7 @@ const AboutMe = () => {
             </div>
           </div>
 
-          {/* Corner accents - blue */}
+          {/* Corner accents */}
           <div className="absolute top-4 right-4 w-8 h-8 border-t border-r border-blue-500/40 rounded-tr-2xl"></div>
           <div className="absolute bottom-4 left-4 w-8 h-8 border-b border-l border-blue-400/40 rounded-bl-2xl"></div>
         </div>

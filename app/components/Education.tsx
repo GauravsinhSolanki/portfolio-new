@@ -111,7 +111,6 @@ const Education = () => {
 
   return (
     <section id="education" className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-slate-900 via-slate-900 to-blue-950/30">
-      {/* Decorative elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500/5 rounded-full blur-3xl"></div>
@@ -119,7 +118,7 @@ const Education = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto">
-        {/* Section header with different style */}
+        {/* Section header */}
         <div className="text-center mb-16">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
@@ -157,7 +156,7 @@ const Education = () => {
           </motion.p>
         </div>
 
-        {/* Education Cards - New Design */}
+        {/* Education Cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
           {educationData.map((edu, index) => (
             <motion.div

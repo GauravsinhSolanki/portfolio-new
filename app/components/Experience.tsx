@@ -39,7 +39,7 @@ const Experience = () => {
       location: "Canada",
       role: "Software Development Engineer",
       period: "Oct 2024 – Present",
-      type: "Full-time",
+      type: "Full-time (1+ Year Ongoing)",
       icon: <FaRocket className="text-white" />,
       color: "bg-gradient-to-br from-blue-600 via-indigo-700 to-purple-700",
       badgeColor: "bg-blue-500/20 text-blue-300 border-blue-500/40",
@@ -94,7 +94,7 @@ const Experience = () => {
       location: "Canada",
       role: "Software Developer Co-op",
       period: "Jun 2024 – Sep 2024",
-      type: "Co-op",
+      type: "Co-op (4 Months)",
       icon: <FaTools className="text-white" />,
       color: "bg-gradient-to-br from-cyan-600 via-blue-700 to-sky-700",
       badgeColor: "bg-cyan-500/20 text-cyan-300 border-cyan-500/40",
@@ -135,7 +135,7 @@ const Experience = () => {
       location: "Surat, Gujarat, India",
       role: "Software Engineer",
       period: "Aug 2021 – Apr 2022",
-      type: "Full-time + Internship",
+      type: "Full-time + Internship (9 Months)",
       icon: <FaBriefcase className="text-white" />,
       color: "bg-gradient-to-br from-blue-600 via-indigo-500 to-purple-400",
       badgeColor: "bg-emerald-500/20 text-emerald-300 border-emerald-500/40",
@@ -180,14 +180,14 @@ const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-slate-900 via-indigo-950/40 to-slate-900">
-      {/* Decorative background elements */}
+    <section id="experience" className="relative py-20 px-4 md:px-8 bg-gradient-to-b from-slate-900 via-indigo-950/40 to-slate-900 mobile-padding">
+      {/* background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute -top-40 -left-40 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl"></div>
         <div className="absolute -bottom-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
         <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl"></div>
         
-        {/* Circuit/network pattern */}
+        {/* Circuit pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{
             backgroundImage: `radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.3) 1px, transparent 0)`,
@@ -197,8 +197,8 @@ const Experience = () => {
       </div>
 
       <div className="relative max-w-7xl mx-auto">
-        {/* Section header with new style */}
-        <div className="text-center mb-16">
+        {/* Section header */}
+        <div className="text-center mb-16 mobile-center">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -235,140 +235,139 @@ const Experience = () => {
           </motion.p>
         </div>
 
-        {/* Experience Timeline - New Design */}
-        <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-transparent via-blue-500/30 to-transparent"></div>
+        {/* Experience Timeline  */}
+        <div className="relative experience-timeline">
+          {/* Timeline line  */}
+          <div className="hidden md:block absolute left-1/2 -translate-x-1/2 h-full w-1 bg-gradient-to-b from-transparent via-blue-500/30 to-transparent"></div>
           
           {/* Experience Cards */}
-          <div className="space-y-16">
+          <div className="space-y-16 md:space-y-24">
             {experiences.map((exp, index) => (
               <motion.div
                 key={exp.id}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.2 }}
                 viewport={{ once: true }}
-                className={`relative flex ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} items-center`}
+                className="relative"
                 ref={(el) => {
                   experienceRefs.current[index] = el;
                 }}
               >
-                
-                {/* Date Badge - Desktop */}
-                <div className={`hidden md:block w-1/3 ${index % 2 === 0 ? 'text-right pr-12' : 'text-left pl-12'}`}>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-slate-800/50 border border-slate-700/50 backdrop-blur-sm">
-                    <FaCalendarAlt className="text-blue-400" />
-                    <span className="text-slate-300 font-medium">{exp.period}</span>
-                  </div>
-                </div>
 
                 {/* Experience Card */}
-                <div className="w-full md:w-2/3 ml-8 md:ml-0">
-                  <motion.div
-                    className={`relative rounded-2xl overflow-hidden border border-slate-700/50 backdrop-blur-sm bg-slate-900/40 transition-all duration-500 hover:border-blue-500/30 cursor-pointer ${
-                      activeExp === exp.id ? 'ring-2 ring-blue-500/30' : ''
-                    }`}
-                    onClick={() => setActiveExp(activeExp === exp.id ? null : exp.id)}
-                    whileHover={{ y: -5 }}
-                  >
-                    {/* Header with gradient */}
-                    <div className={`${exp.color} p-6`}>
-                      <div className="flex items-start justify-between">
-                        <div className="flex items-center gap-4">
-                          <div className="p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20">
+                <motion.div
+                  className={`relative rounded-2xl overflow-hidden border border-slate-700/50 backdrop-blur-sm bg-slate-900/40 transition-all duration-500 hover:border-blue-500/30 cursor-pointer glass-card ${
+                    activeExp === exp.id ? 'ring-2 ring-blue-500/30' : ''
+                  }`}
+                  onClick={() => setActiveExp(activeExp === exp.id ? null : exp.id)}
+                  whileHover={{ y: -5 }}
+                >
+                  {/* Header */}
+                  <div className={`${exp.color} p-6`}>
+                    <div className="flex flex-col gap-4">
+                      {/* Top row: Icon, Company, and Role */}
+                      <div className="flex flex-col sm:flex-row items-start justify-between gap-4">
+                        <div className="flex items-start gap-4 flex-1">
+                          <div className="p-3 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex-shrink-0">
                             {exp.icon}
                           </div>
-                          <div>
-                            <div className="flex items-center gap-3 mb-1">
-                              <h3 className="text-2xl font-bold text-white">{exp.company}</h3>
-                              <span className={`px-3 py-1 rounded-full ${exp.badgeColor} border backdrop-blur-sm text-sm`}>
-                                {exp.type}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-4">
-                              <div className="flex items-center gap-2">
-                                <FaMapMarkerAlt className="text-white/80" />
-                                <span className="text-white/90">{exp.location}</span>
-                              </div>
-                              <div className="md:hidden flex items-center gap-2">
-                                <FaCalendarAlt className="text-white/80" />
-                                <span className="text-white/90">{exp.period}</span>
-                              </div>
-                            </div>
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-2xl font-bold text-white break-words">{exp.company}</h3>
                           </div>
                         </div>
-                        <div className={`px-4 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20`}>
-                          <span className="font-bold text-white">{exp.role}</span>
+                        {/* Role badge */}
+                        <div className="px-4 py-2 rounded-lg bg-white/10 backdrop-blur-sm border border-white/20 sm:self-start break-words max-w-full">
+                          <span className="font-bold text-white text-sm sm:text-base">{exp.role}</span>
+                        </div>
+                      </div>
+                      
+                      {/* Second row: Location, Period, and Type badge */}
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div className="flex flex-wrap items-center gap-4 text-sm">
+                          <div className="flex items-center gap-2">
+                            <FaMapMarkerAlt className="text-white/80 flex-shrink-0" />
+                            <span className="text-white/90">{exp.location}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <FaCalendarAlt className="text-white/80 flex-shrink-0" />
+                            <span className="text-white/90">{exp.period}</span>
+                          </div>
+                        </div>
+                        {/* Type badge */}
+                        <div className={`px-3 py-1 rounded-full ${exp.badgeColor} border backdrop-blur-sm text-sm break-words w-fit`}>
+                          {exp.type}
                         </div>
                       </div>
                     </div>
+                  </div>
 
-                    {/* Content */}
-                    <div className="p-6">
-                      <p className="text-slate-300 leading-relaxed mb-6">{exp.description}</p>
+                  {/* Content */}
+                  <div className="p-4 md:p-6">
+                    <p className="text-slate-300 leading-relaxed mb-6 text-sm md:text-base">{exp.description}</p>
 
-                      {/* Highlights */}
-                      <div className="mb-6">
-                        <h5 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
-                          <FaTrophy className="text-yellow-400" />
-                          Key Highlights
-                        </h5>
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                          {exp.highlights.map((highlight, idx) => (
-                            <div key={idx} className="flex items-center gap-2 p-3 rounded-lg bg-slate-800/30 border border-slate-700/30">
-                              <div className="text-blue-400">
-                                {highlight.icon}
-                              </div>
-                              <span className="text-slate-300 text-sm">{highlight.text}</span>
+                    {/* Highlights */}
+                    <div className="mb-6">
+                      <h5 className="text-lg font-semibold text-white mb-3 flex items-center gap-2">
+                        <FaTrophy className="text-yellow-400" />
+                        Key Highlights
+                      </h5>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {exp.highlights.map((highlight, idx) => (
+                          <div key={idx} className="flex items-center gap-2 p-3 rounded-lg bg-slate-800/30 border border-slate-700/30">
+                            <div className="text-blue-400 flex-shrink-0">
+                              {highlight.icon}
                             </div>
-                          ))}
-                        </div>
+                            <span className="text-slate-300 text-sm">{highlight.text}</span>
+                          </div>
+                        ))}
                       </div>
+                    </div>
 
-                      {/* Achievements - Expandable */}
-                      <div>
-                        <div className="flex items-center justify-between mb-4">
-                          <h5 className="text-lg font-semibold text-white">Key Achievements</h5>
-                          <span className="text-slate-400 text-sm">
-                            {exp.achievements.length} achievements
-                          </span>
-                        </div>
-                        
-                        <div className="space-y-4">
-                          {exp.achievements.map((achievement, aIndex) => (
-                            <div 
-                              key={aIndex}
-                              className={`p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
-                                activeAchievement === aIndex + exp.id * 10
-                                  ? 'border-blue-500/50 bg-blue-900/10'
-                                  : 'border-slate-700/30 bg-slate-800/20 hover:border-blue-500/30 hover:bg-slate-800/30'
-                              }`}
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                setActiveAchievement(
-                                  activeAchievement === aIndex + exp.id * 10 
-                                    ? null 
-                                    : aIndex + exp.id * 10
-                                );
-                              }}
-                            >
-                              <div className="flex items-center justify-between">
-                                <div className="flex items-center gap-3">
-                                  <div className="p-2 rounded-lg bg-slate-800/50 border border-slate-700/50">
-                                    {achievement.icon}
-                                  </div>
-                                  <div>
-                                    <h6 className="font-semibold text-white">{achievement.title}</h6>
-                                    <p className="text-blue-300 text-sm mt-1">{achievement.impact}</p>
-                                  </div>
+                    {/* Achievements - Expandable */}
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <h5 className="text-lg font-semibold text-white">Key Achievements</h5>
+                        <span className="text-slate-400 text-sm">
+                          {exp.achievements.length} achievements
+                        </span>
+                      </div>
+                      
+                      <div className="space-y-4">
+                        {exp.achievements.map((achievement, aIndex) => (
+                          <div 
+                            key={aIndex}
+                            className={`p-4 rounded-xl border transition-all duration-300 cursor-pointer ${
+                              activeAchievement === aIndex + exp.id * 10
+                                ? 'border-blue-500/50 bg-blue-900/10'
+                                : 'border-slate-700/30 bg-slate-800/20 hover:border-blue-500/30 hover:bg-slate-800/30'
+                            }`}
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setActiveAchievement(
+                                activeAchievement === aIndex + exp.id * 10 
+                                  ? null 
+                                  : aIndex + exp.id * 10
+                              );
+                            }}
+                          >
+                            <div className="flex items-center justify-between">
+                              <div className="flex items-center gap-3 flex-1 min-w-0">
+                                <div className="p-2 rounded-lg bg-slate-800/50 border border-slate-700/50 flex-shrink-0">
+                                  {achievement.icon}
                                 </div>
-                                <FaChevronRight className={`text-blue-400 transition-transform duration-300 ${
-                                  activeAchievement === aIndex + exp.id * 10 ? 'rotate-90' : ''
-                                }`} />
+                                <div className="flex-1 min-w-0">
+                                  <h6 className="font-semibold text-white break-words">{achievement.title}</h6>
+                                  <p className="text-blue-300 text-sm mt-1 truncate">{achievement.impact}</p>
+                                </div>
                               </div>
-                              
-                              {/* Achievement Details - Expandable */}
+                              <FaChevronRight className={`text-blue-400 transition-transform duration-300 flex-shrink-0 ${
+                                activeAchievement === aIndex + exp.id * 10 ? 'rotate-90' : ''
+                              }`} />
+                            </div>
+                            
+                            {/* Achievement Details - Expandable */}
+                            <AnimatePresence>
                               {activeAchievement === aIndex + exp.id * 10 && (
                                 <motion.div
                                   initial={{ opacity: 0, height: 0 }}
@@ -385,7 +384,7 @@ const Experience = () => {
                                       {achievement.metrics.map((metric, mIndex) => (
                                         <span
                                           key={mIndex}
-                                          className="px-3 py-1 rounded-full bg-blue-900/20 text-blue-300 text-xs border border-blue-500/30"
+                                          className="px-3 py-1 rounded-full bg-blue-900/20 text-blue-300 text-xs border border-blue-500/30 whitespace-nowrap"
                                         >
                                           {metric}
                                         </span>
@@ -394,13 +393,13 @@ const Experience = () => {
                                   </div>
                                 </motion.div>
                               )}
-                            </div>
-                          ))}
-                        </div>
+                            </AnimatePresence>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                  </motion.div>
-                </div>
+                  </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
@@ -412,30 +411,30 @@ const Experience = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="mt-16 p-8 rounded-2xl glass-card border border-slate-700/50 bg-gradient-to-br from-slate-900/50 to-indigo-950/30"
+          className="mt-16 p-6 md:p-8 rounded-2xl glass-card border border-slate-700/50 bg-gradient-to-br from-slate-900/50 to-indigo-950/30 mobile-full-width"
         >
           <h3 className="text-2xl font-bold text-white mb-8 text-center">Career Progress & Impact</h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8">
             <div className="text-center p-4 rounded-xl bg-blue-900/20 border border-blue-500/30">
-              <div className="text-3xl font-bold text-blue-400 mb-2">2+</div>
-              <div className="text-slate-300 font-medium">Years Experience</div>
-              <div className="text-slate-500 text-sm">Software Engineering</div>
+              <div className="text-2xl md:text-3xl font-bold text-blue-400 mb-2">2+</div>
+              <div className="text-slate-300 font-medium text-sm md:text-base">Years Experience</div>
+              <div className="text-slate-500 text-xs md:text-sm">Software Engineering</div>
             </div>
             <div className="text-center p-4 rounded-xl bg-purple-900/20 border border-purple-500/30">
-              <div className="text-3xl font-bold text-purple-400 mb-2">8</div>
-              <div className="text-slate-300 font-medium">Products Built</div>
-              <div className="text-slate-500 text-sm">From Scratch</div>
+              <div className="text-2xl md:text-3xl font-bold text-purple-400 mb-2">8</div>
+              <div className="text-slate-300 font-medium text-sm md:text-base">Products Built</div>
+              <div className="text-slate-500 text-xs md:text-sm">From Scratch</div>
             </div>
             <div className="text-center p-4 rounded-xl bg-cyan-900/20 border border-cyan-500/30">
-              <div className="text-3xl font-bold text-cyan-400 mb-2">30%</div>
-              <div className="text-slate-300 font-medium">Process Improvement</div>
-              <div className="text-slate-500 text-sm">Configuration Time</div>
+              <div className="text-2xl md:text-3xl font-bold text-cyan-400 mb-2">30%</div>
+              <div className="text-slate-300 font-medium text-sm md:text-base">Process Improvement</div>
+              <div className="text-slate-500 text-xs md:text-sm">Configuration Time</div>
             </div>
             <div className="text-center p-4 rounded-xl bg-emerald-900/20 border border-emerald-500/30">
-              <div className="text-3xl font-bold text-emerald-400 mb-2">40%</div>
-              <div className="text-slate-300 font-medium">Faster Resolution</div>
-              <div className="text-slate-500 text-sm">Issue Resolution</div>
+              <div className="text-2xl md:text-3xl font-bold text-emerald-400 mb-2">40%</div>
+              <div className="text-slate-300 font-medium text-sm md:text-base">Faster Resolution</div>
+              <div className="text-slate-500 text-xs md:text-sm">Issue Resolution</div>
             </div>
           </div>
         </motion.div>

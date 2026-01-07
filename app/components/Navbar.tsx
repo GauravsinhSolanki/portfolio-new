@@ -93,7 +93,7 @@ export default function Navbar() {
               </div>
             </motion.div>
 
-            {/* Desktop Navigation with Traveling Dot */}
+            {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-1">
               {navItems.map((item, index) => {
                 const isActive = activeLink === item.href.replace('#', '');
@@ -120,7 +120,7 @@ export default function Navbar() {
                     
                     {/* Underline Container */}
                     <div className="absolute -bottom-1 left-0 right-0 h-2 overflow-visible">
-                      {/* Underline Line - Full width when hovered/active */}
+                      {/* Underline Line */}
                       <div 
                         className={`absolute top-1 left-0 right-0 h-0.5 transition-all duration-300 ${
                           isHovered || isActive ? 'bg-blue-500/30 w-full' : 'bg-transparent w-0'

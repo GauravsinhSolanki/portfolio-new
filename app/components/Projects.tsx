@@ -65,9 +65,7 @@ const Projects = () => {
   ];
 
   return (
-    <section id="projects" className="relative min-h-screen flex flex-col justify-center py-20 px-4 md:px-8 overflow-hidden">
-      
-      {/* Hero-like Background */}
+    <section id="projects" className="relative min-h-screen flex flex-col justify-center py-20 px-6 sm:px-8 md:px-8 overflow-hidden">
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
           animate={{
@@ -179,7 +177,7 @@ const Projects = () => {
         {/* Project Categories */}
         <div className="mb-16">
           <h3 className="text-2xl font-bold text-white mb-8 text-center">Project Focus Areas</h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6 px-1 sm:px-0">
             {projectCategories.map((category, index) => (
               <motion.div
                 key={index}
@@ -188,23 +186,33 @@ const Projects = () => {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
               >
-                <div className="glass-card p-6 rounded-2xl bg-black/20 backdrop-blur-sm border border-blue-500/20 h-full">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-3 rounded-xl bg-black/30 border border-blue-500/20">
-                      {category.icon}
+                <div className="glass-card px-5 py-6 sm:p-6 rounded-2xl bg-black/20 backdrop-blur-sm border border-blue-500/20 h-full">
+                  {/* Inline layout for title and description */}
+                  <div className="flex flex-col h-full">
+                    <div className="flex items-start gap-3 mb-4">
+                      <div className="p-3 rounded-xl bg-black/30 border border-blue-500/20 flex-shrink-0">
+                        {category.icon}
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="text-xl font-bold text-white mb-2">{category.title}</h4>
+                        {/* \Descripion in line with the title */}
+                        <p className="text-slate-300 text-sm md:text-base leading-relaxed mb-4">
+                          {category.description}
+                        </p>
+                      </div>
                     </div>
-                    <h4 className="text-xl font-bold text-white">{category.title}</h4>
-                  </div>
-                  <p className="text-slate-300 mb-4">{category.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {category.tech.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 rounded-full bg-blue-900/20 text-blue-300 text-sm border border-blue-500/30"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    <div className="mt-auto">
+                      <div className="flex flex-wrap gap-2">
+                        {category.tech.map((tech, techIndex) => (
+                          <span
+                            key={techIndex}
+                            className="px-3 py-1 rounded-full bg-blue-900/20 text-blue-300 text-sm border border-blue-500/30"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.div>
@@ -221,9 +229,16 @@ const Projects = () => {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="glass-card p-8 rounded-2xl bg-black/20 backdrop-blur-sm border border-blue-500/20 max-w-3xl mx-auto">
-            <h3 className="text-2xl font-bold text-white mb-4">Interested in Collaborating?</h3>
-            <p className="text-slate-300 mb-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          viewport={{ once: true }}
+          className="mt-16 text-center"
+        >
+          <div className="glass-card px-5 sm:px-6 py-7 sm:p-8 rounded-2xl bg-black/20 backdrop-blur-sm border border-blue-500/20 max-w-3xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-4 px-2 sm:px-0">Interested in Collaborating?</h3>
+            <p className="text-slate-300 mb-6 px-3 sm:px-0 leading-relaxed">
               While my project portfolio is being prepared, feel free to reach out if you have 
               a project idea or want to discuss potential collaborations.
             </p>
@@ -245,6 +260,7 @@ const Projects = () => {
               Start a Conversation
             </motion.button>
           </div>
+        </motion.div>
         </motion.div>
       </div>
     </section>
