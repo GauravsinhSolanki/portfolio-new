@@ -1,56 +1,33 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaArrowDown, FaFileDownload } from 'react-icons/fa';
-import { FaX } from 'react-icons/fa6';
+import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown, FaFileDownload } from 'react-icons/fa';
 
 const dynamicTitles = [
   "Full Stack Developer",
-  "Cloud Enthusiast",
-  "Software Engineer", 
-  "Web Developer",
+  "Frontend Developer", 
   "SaaS Developer",
-  "Cloud Solutions Architect",  
-  "Frontend Specialist"
+  "Cloud Enthusiast",
+  "Cloud Solution Architect"
 ];
 
 export default function Hero() {
   const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
-  const [displayText, setDisplayText] = useState('');
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [loopNum, setLoopNum] = useState(0);
-  const [typingSpeed, setTypingSpeed] = useState(150);
+  const [isTyping, setIsTyping] = useState(true);
 
-  // Dynamic text typing effect
   useEffect(() => {
-    const handleTyping = () => {
-      const currentWord = dynamicTitles[loopNum % dynamicTitles.length];
-      const updatedText = isDeleting 
-        ? currentWord.substring(0, displayText.length - 1)
-        : currentWord.substring(0, displayText.length + 1);
+    const interval = setInterval(() => {
+      setIsTyping(false);
+      setTimeout(() => {
+        setCurrentTitleIndex((prev) => (prev + 1) % dynamicTitles.length);
+        setIsTyping(true);
+      }, 500);
+    }, 3000);
 
-      setDisplayText(updatedText);
-
-      if (!isDeleting && updatedText === currentWord) {
-        // Pause at end of word
-        setTypingSpeed(2000);
-        setIsDeleting(true);
-      } else if (isDeleting && updatedText === '') {
-        setIsDeleting(false);
-        setLoopNum(loopNum + 1);
-        setTypingSpeed(150);
-      } else {
-        setTypingSpeed(isDeleting ? 50 : 150);
-      }
-    };
-
-    const timer = setTimeout(handleTyping, typingSpeed);
-    return () => clearTimeout(timer);
-  }, [displayText, isDeleting, loopNum, typingSpeed]);
+    return () => clearInterval(interval);
+  }, []);
 
   const handleDownloadResume = () => {
-    // TODO: Replace with actual resume URL
     const resumeUrl = '/resume.pdf';
     const link = document.createElement('a');
     link.href = resumeUrl;
@@ -60,7 +37,6 @@ export default function Hero() {
     document.body.removeChild(link);
   };
 
-  // Smooth scroll with offset function
   const smoothScrollTo = (elementId: string) => {
     const element = document.getElementById(elementId);
     if (element) {
@@ -76,211 +52,143 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col justify-center px-4 md:px-8 lg:px-24 overflow-hidden pt-20 md:pt-0">
+    <section
+      id="home"
+      className="relative min-h-fit flex flex-col justify-center px-4 md:px-8 overflow-hidden bg-[#222831]"
+      style={{ paddingTop: '40px' }}
+    >
+      {/* Navbar Separator */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#76ABAE]/30 to-transparent z-20"></div>
       
-      {/* Background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Static background elements */}
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-700/5 rounded-full blur-3xl"></div>
-        <div className="absolute top-1/3 left-1/4 w-64 h-64 bg-blue-400/3 rounded-full blur-2xl"></div>
+      {/* Background */}
+      <div className="absolute inset-0">
+        {/* Subtle diagonal pattern */}
+        <div 
+          className="absolute inset-0 opacity-5"
+          style={{
+            backgroundImage: `linear-gradient(45deg, #76ABAE 1px, transparent 1px),
+                             linear-gradient(-45deg, #76ABAE 1px, transparent 1px)`,
+            backgroundSize: '60px 60px',
+          }}
+        />
         
-        {/* Subtle circuit pattern */}
-        <div className="absolute inset-0 opacity-[0.02]">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.3) 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }}></div>
-        </div>
+        {/* Animated gradient orbs */}
+        <div className="absolute top-20 right-10 w-64 h-64 bg-[#76ABAE]/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 left-10 w-80 h-80 bg-[#76ABAE]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        
+        {/* Soft gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#222831] via-[#222831]/95 to-transparent"></div>
       </div>
 
-      {/* Main Content Container */}
-      <div className="relative z-10 max-w-6xl mx-auto w-full px-4 sm:px-6 md:px-8">
+      {/* Main Content Container - Full Width */}
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 md:px-8 pb-16 sm:pb-18 md:pb-16">
         
         {/* Greeting */}
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-3 md:mb-4 mt-8 md:mt-0"
-        >
-          <p className="text-2xl sm:text-2xl md:text-xl greeting-text font-light">
+        <div className="mb-2 md:mb-3">
+          <p className="text-lg sm:text-xl md:text-xl text-[#EEEEEE]/70 font-light">
             Hey there! 👋 I'm
           </p>
-        </motion.div>
+        </div>
 
-        {/* Name with Gradient */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="mb-4 md:mb-4"
-        >
-          <h1 className="text-6xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none">
-            <span className="name-gradient block">
+        {/* Name */}
+        <div className="mb-3 md:mb-4">
+          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-none">
+            <span className="text-[#EEEEEE] block">
               Gaurav
             </span>
           </h1>
-        </motion.div>
+        </div>
 
-        {/* Dynamic Title */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="mb-8 md:mb-8"
-        >
-          <div className="min-h-[4rem] sm:min-h-[4rem] md:min-h-[4rem] flex items-center">
-            <h2 className="text-3xl sm:text-3xl md:text-3xl lg:text-4xl text-gray-300 font-medium">
-              <span className="text-blue-400 font-semibold">
-                {displayText}
+        {/* Dynamic Title with Animation */}
+        <div className="mb-6 md:mb-8">
+          <div className="min-h-[3rem] sm:min-h-[3.5rem] md:min-h-[4rem] flex items-center">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#EEEEEE]/80 font-medium">
+              <span 
+                className={`text-[#76ABAE] font-semibold border-b-2 border-[#76ABAE]/50 pb-1 transition-opacity duration-500 ${
+                  isTyping ? 'opacity-100' : 'opacity-0'
+                }`}
+              >
+                {dynamicTitles[currentTitleIndex]}
               </span>
-              <span className="ml-1 animate-pulse">|</span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-blue-300/70 mt-2 md:mt-2">
-            {dynamicTitles.length} specializations and counting...
+          <p className="text-sm sm:text-base text-[#EEEEEE]/60 mt-2 font-medium">
+            Building scalable, production-ready software systems
           </p>
-        </motion.div>
+        </div>
 
-        {/* Description */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="mb-8 md:mb-10"
-        >
-          <p className="text-base sm:text-lg md:text-lg text-slate-300 leading-relaxed">
-            Software Engineer with 2+ years of experience building and scaling production-grade web platforms.
-            Specializing in full-stack development, cloud-native systems, and owning features end-to-end from product discovery 
-            to production in regulated domains.
-          </p>
-          <span className="block mt-3 md:mt-4 text-blue-300 font-medium text-base sm:text-base">
-            Open for exciting opportunities to contribute my expertise.
-          </span>
-        </motion.div>
+        {/* Professional Summary - Compact Card */}
+        <div className="mb-6 md:mb-8">
+          <div className="w-full p-4 sm:p-5 md:p-6 bg-gradient-to-br from-[#31363F]/60 via-[#31363F]/40 to-[#31363F]/20 border border-[#76ABAE]/20 rounded-xl shadow-2xl backdrop-blur-sm relative overflow-hidden">
+            {/* Decorative corner accent */}
+            <div className="absolute top-0 right-0 w-24 h-24 bg-[#76ABAE]/10 rounded-bl-full"></div>
+            <div className="absolute bottom-0 left-0 w-20 h-20 bg-[#76ABAE]/5 rounded-tr-full"></div>
+            
+            <div className="relative z-10">
+              {/* Main Content - Compact */}
+              <div className="space-y-3">
+                <p className="text-base sm:text-lg md:text-xl text-[#EEEEEE] leading-snug font-medium">
+                  <span className="text-[#76ABAE] font-bold">2+ years</span> building production systems that real businesses rely on. 
+                  Full-stack engineer who ships features from idea to deployment.
+                </p>
 
-        {/* CTA Buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 15 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 mb-8 md:mb-12 w-full"
-        >
-          {/* View My Work Button */}
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => smoothScrollTo('projects')}
-            className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full font-semibold text-base md:text-lg text-white shadow-lg hover:shadow-blue-500/30 transition-all flex-1 text-center min-w-[200px]"
-          >
-            View My Work
-          </motion.button>
-          
-          {/* Contact Me Button */}
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => smoothScrollTo('contact')}
-            className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 border-2 border-blue-500 text-blue-300 rounded-full font-semibold text-base md:text-lg hover:bg-blue-900/20 transition-colors flex-1 text-center min-w-[200px]"
-          >
-            Contact Me
-          </motion.button>
-          
-          {/* Download Resume Button */}
-          <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={handleDownloadResume}
-            className="w-full sm:w-auto px-6 py-3 md:px-8 md:py-4 border-2 border-gray-600 text-gray-300 rounded-full font-semibold text-base md:text-lg hover:bg-gray-800/30 transition-colors flex items-center justify-center gap-2 flex-1 min-w-[200px] group relative overflow-hidden"
-          >
-            <FaFileDownload className="text-lg" />
-            <span>Download Resume</span>
-            {/* animation on hover */}
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
-          </motion.button>
-        </motion.div>
-
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-12 md:mb-0"
-        >
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
-            <p className="text-gray-400 text-base sm:text-base md:text-lg whitespace-nowrap">Connect with me:</p>
-            <div className="flex gap-4 sm:gap-6 flex-wrap">
-              {[
-                { 
-                  icon: <FaGithub />, 
-                  color: "hover:text-white", 
-                  label: "GitHub",
-                  href: "https://github.com/GauravsinhSolanki"
-                },
-                { 
-                  icon: <FaLinkedin />, 
-                  color: "hover:text-blue-400", 
-                  label: "LinkedIn",
-                  href: "https://www.linkedin.com/in/gauravsinh-solanki/"
-                },
-                { 
-                  icon: <FaX />, 
-                  color: "hover:text-sky-400", 
-                  label: "X",
-                  href: "https://x.com/Gauravsinh07"
-                },
-                { 
-                  icon: <FaEnvelope />, 
-                  color: "hover:text-red-400", 
-                  label: "Email",
-                  href: "mailto:solankigbs11@gmail.com"
-                },
-              ].map((social, index) => (
-                <motion.a
-                  key={index}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  whileHover={{ scale: 1.15 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`text-2xl sm:text-2xl text-gray-500 ${social.color} transition-colors relative group p-2 rounded-lg hover:bg-slate-800/30`}
-                  title={social.label}
-                  aria-label={social.label}
-                >
-                  {social.icon}
-                  <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs bg-slate-900 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-10 border border-slate-700">
-                    {social.label}
-                  </span>
-                </motion.a>
-              ))}
+                {/* Status Banner - Compact */}
+                <div className="flex items-center gap-2.5 p-2.5 sm:p-3 bg-[#76ABAE]/15 border border-[#76ABAE]/40 rounded-lg">
+                  <div className="flex-shrink-0">
+                    <div className="w-2.5 h-2.5 bg-[#76ABAE] rounded-full animate-pulse"></div>
+                  </div>
+                  <p className="text-[#EEEEEE] font-semibold text-sm sm:text-base">
+                    Available for new opportunities
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
+
+        {/* CTA Buttons - Compact */}
+        <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 mb-20 sm:mb-24 md:mb-20 w-full">
+          {/* View My Work Button */}
+          <button
+            onClick={() => smoothScrollTo('projects')}
+            className="w-full sm:flex-1 sm:min-w-[170px] sm:max-w-[220px] px-5 py-3 md:px-6 md:py-3.5 bg-gradient-to-r from-[#76ABAE] to-[#5a8a8d] text-[#EEEEEE] rounded-xl font-semibold hover:from-[#5a8a8d] hover:to-[#76ABAE] transition-all duration-300 shadow-lg hover:shadow-[#76ABAE]/30 hover:-translate-y-0.5 text-center text-sm sm:text-base"
+          >
+            View My Work
+          </button>
+          
+          {/* Contact Me Button */}
+          <button
+            onClick={() => smoothScrollTo('contact')}
+            className="w-full sm:flex-1 sm:min-w-[170px] sm:max-w-[220px] px-5 py-3 md:px-6 md:py-3.5 bg-transparent text-[#76ABAE] border-2 border-[#76ABAE] rounded-xl font-semibold hover:bg-[#76ABAE]/10 transition-all duration-300 text-center text-sm sm:text-base"
+          >
+            Contact Me
+          </button>
+          
+          {/* Download Resume Button */}
+          <button
+            onClick={handleDownloadResume}
+            className="w-full sm:flex-1 sm:min-w-[170px] sm:max-w-[220px] px-5 py-3 md:px-6 md:py-3.5 bg-[#31363F] text-[#EEEEEE] border border-[#76ABAE]/30 rounded-xl font-semibold hover:bg-[#31363F]/80 hover:border-[#76ABAE]/50 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
+          >
+            <FaFileDownload className="text-base" />
+            <span>Download Resume</span>
+          </button>
+        </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.8, duration: 0.8 }}
-        className="absolute bottom-6 sm:bottom-8 left-1/2 transform -translate-x-1/2 w-full flex justify-center"
-      >
-        <motion.a
-          href="#about"
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="flex flex-col items-center text-blue-300 hover:text-blue-400 transition-colors cursor-pointer px-4 py-2 rounded-lg hover:bg-blue-900/10"
-          onClick={(e) => {
-            e.preventDefault();
-            smoothScrollTo('about');
-          }}
+      {/* Enhanced Scroll Indicator - Highly Visible */}
+      <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 transform -translate-x-1/2 w-full flex justify-center z-20 opacity-70">
+        <button
+          onClick={() => smoothScrollTo('about')}
+          className="flex flex-col items-center transition-all duration-300 cursor-pointer group"
         >
-          <span className="text-sm sm:text-sm mb-1">Discover More</span>
-          <FaArrowDown className="text-lg sm:text-lg" />
-        </motion.a>
-      </motion.div>
-      <div className="h-16 sm:hidden"></div>
+          <span className="text-base sm:text-lg font-bold mb-2 tracking-wide text-[#76ABAE] drop-shadow-[0_2px_8px_rgba(118,171,174,0.5)]">
+            Discover More
+          </span>
+          <div className="animate-bounce bg-[#76ABAE] p-0 .5 sm:p-0.5 rounded-full group-hover:bg-[#8dbdc0] transition-colors shadow-[0_4px_20px_rgba(118,171,174,0.4)]">
+            <FaArrowDown className="text-xl sm:text-2xl text-[#222831]" />
+          </div>
+        </button>
+      </div>
     </section>
   );
 }

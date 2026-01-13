@@ -1,24 +1,24 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { FaHome, FaUser, FaCode, FaProjectDiagram, FaBriefcase, FaGraduationCap, FaEnvelope, FaGithub, FaLinkedin, FaBars } from 'react-icons/fa';
+import { FaHome, FaUser, FaCode, FaProjectDiagram, FaBriefcase, FaGraduationCap, FaEnvelope, FaGithub, FaLinkedin, FaBars, FaComments } from 'react-icons/fa';
+import Image from "next/image";
 
 const navItems = [
-  { name: 'Home', href: '#home', icon: <FaHome /> },
-  { name: 'About', href: '#about', icon: <FaUser /> },
-  { name: 'Skills', href: '#skills', icon: <FaCode /> },
-  { name: 'Experience', href: '#experience', icon: <FaBriefcase /> },
-  { name: 'Projects', href: '#projects', icon: <FaProjectDiagram /> },
-  { name: 'Education', href: '#education', icon: <FaGraduationCap /> },
-  { name: 'Contact', href: '#contact', icon: <FaEnvelope /> },
+  { name: 'Home', href: '#home', icon: <FaHome className="text-lg" /> },
+  { name: 'About', href: '#about', icon: <FaUser className="text-lg" /> },
+  { name: 'Skills', href: '#skills', icon: <FaCode className="text-lg" /> },
+  { name: 'Experience', href: '#experience', icon: <FaBriefcase className="text-lg" /> },
+  { name: 'Projects', href: '#projects', icon: <FaProjectDiagram className="text-lg" /> },
+  { name: 'Education', href: '#education', icon: <FaGraduationCap className="text-lg" /> },
+  { name: 'Testimonials', href: '#testimonials', icon: <FaComments className="text-lg" /> },
+  { name: 'Contact', href: '#contact', icon: <FaEnvelope className="text-lg" /> },
 ];
 
 export default function Navbar() {
   const [activeLink, setActiveLink] = useState('home');
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,75 +61,67 @@ export default function Navbar() {
 
   return (
     <>
-      <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5 }}
+      <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled 
-            ? 'bg-gray-900/95 backdrop-blur-md py-3 shadow-xl border-b border-blue-800/30' 
-            : 'bg-gray-900/90 py-4'
+            ? 'bg-dark-primary/95 backdrop-blur-sm py-3 shadow-md border-b border-border' 
+            : 'bg-dark-primary py-4'
         }`}
       >
+        {/* Navbar Separator */}
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+        
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex items-center justify-between">
             
             {/* Logo/Name */}
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              className="flex items-center space-x-3"
-            >
-              <div className="w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 flex items-center justify-center shadow-lg">
-                <span className="text-white font-bold">G</span>
-              </div>
+            <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-3">
+                <Image
+                  src="/logo.png"
+                  alt="Gaurav Logo"
+                  width={40}
+                  height={40}
+                  className="rounded-full border border-border"
+                />
+              </div>  
               <div>
                 <button 
                   onClick={() => handleClick('#home')}
-                  className="text-xl md:text-2xl font-bold name-gradient hover:opacity-90 transition-opacity text-left"
+                  className="text-xl md:text-2xl font-bold text-text hover:text-primary transition-colors text-left"
                 >
                   Gaurav
                 </button>
-                <p className="text-xs specialization-gradient mt-0.5">Full Stack Developer</p>
+                <p className="text-xs text-text-muted mt-0.5">Full Stack Developer</p>
               </div>
-            </motion.div>
+            </div>
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-1">
-              {navItems.map((item, index) => {
+              {navItems.map((item) => {
                 const isActive = activeLink === item.href.replace('#', '');
-                const isHovered = hoveredIndex === index;
                 
                 return (
                   <div 
                     key={item.name} 
                     className="relative"
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
                   >
                     <button
                       onClick={() => handleClick(item.href)}
-                      className={`flex flex-col items-center px-4 py-2 rounded-lg transition-all duration-300 relative z-10 ${
+                      className={`flex flex-col items-center px-4 py-2 transition-colors duration-200 relative z-10 ${
                         isActive
-                          ? 'text-white'
-                          : 'text-gray-300 hover:text-white'
+                          ? 'text-primary'
+                          : 'text-text-light hover:text-text'
                       }`}
                     >
-                      <span className="text-lg mb-1">{item.icon}</span>
+                      <span className="mb-1">{item.icon}</span>
                       <span className="text-sm font-medium">{item.name}</span>
                     </button>
                     
-                    {/* Underline Container */}
-                    <div className="absolute -bottom-1 left-0 right-0 h-2 overflow-visible">
-                      {/* Underline Line */}
-                      <div 
-                        className={`absolute top-1 left-0 right-0 h-0.5 transition-all duration-300 ${
-                          isHovered || isActive ? 'bg-blue-500/30 w-full' : 'bg-transparent w-0'
-                        }`}
-                      />
-                      
-                      
-                      
-                    </div>
+                    {/* Active indicator */}
+                    {isActive && (
+                      <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary"></div>
+                    )}
                   </div>
                 );
               })}
@@ -137,36 +129,32 @@ export default function Navbar() {
 
             {/* Right Section */}
             <div className="flex items-center space-x-4">
-              <motion.a
-                whileHover={{ scale: 1.1 }}
+              <a
                 href="https://github.com/GauravsinhSolanki"
                 target="_blank"
-                className="hidden md:block text-gray-400 hover:text-white p-2 rounded-full hover:bg-gray-800/50 transition-colors"
+                className="hidden md:block text-text-muted hover:text-text p-2 rounded-full hover:bg-background-light transition-colors"
               >
                 <FaGithub className="text-xl" />
-              </motion.a>
+              </a>
               
-              <motion.a
-                whileHover={{ scale: 1.1 }}
+              <a
                 href="https://www.linkedin.com/in/gauravsinh-solanki/"
                 target="_blank"
-                className="hidden md:block text-gray-400 hover:text-blue-400 p-2 rounded-full hover:bg-gray-800/50 transition-colors"
+                className="hidden md:block text-text-muted hover:text-primary p-2 rounded-full hover:bg-background-light transition-colors"
               >
                 <FaLinkedin className="text-xl" />
-              </motion.a>
+              </a>
               
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <button
                 onClick={() => handleClick('#contact')}
-                className="px-5 py-2 bg-gradient-to-r from-blue-500 to-blue-700 rounded-full font-semibold text-white hover:from-blue-600 hover:to-blue-800 transition-all duration-300 shadow-lg hover:shadow-xl text-sm md:text-base"
+                className="px-5 py-2 bg-primary text-white rounded-full font-medium hover:bg-primary-dark transition-colors duration-200 shadow-lg hover:shadow-xl text-sm md:text-base"
               >
                 Hire Me
-              </motion.button>
+              </button>
               
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden text-gray-300 hover:text-white text-2xl p-2"
+                className="md:hidden text-text-light hover:text-text text-2xl p-2"
               >
                 <FaBars />
               </button>
@@ -176,10 +164,8 @@ export default function Navbar() {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="md:hidden bg-gray-900/95 backdrop-blur-lg border-t border-blue-800/30 mt-2"
+          <div
+            className="md:hidden bg-background-light border-t border-border mt-2"
           >
             <div className="container mx-auto px-4 py-4">
               <div className="grid grid-cols-2 gap-2">
@@ -189,34 +175,42 @@ export default function Navbar() {
                     <button
                       key={item.name}
                       onClick={() => handleClick(item.href)}
-                      className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+                      className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-colors ${
                         isActive
-                          ? 'bg-gradient-to-r from-blue-600/30 to-blue-800/30 text-white'
-                          : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
+                          ? 'bg-primary text-white'
+                          : 'text-text-light hover:text-text hover:bg-background-lighter'
                       }`}
                     >
-                      <span className="text-lg">{item.icon}</span>
+                      <span>{item.icon}</span>
                       <span className="font-medium">{item.name}</span>
                       {isActive && (
-                        <div className="ml-auto w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <div className="ml-auto w-2 h-2 bg-white rounded-full"></div>
                       )}
                     </button>
                   );
                 })}
               </div>
               
-              <div className="flex justify-center space-x-6 mt-6 pt-4 border-t border-gray-800">
-                <a href="https://github.com/GauravsinhSolanki" target="_blank" className="text-gray-400 hover:text-white">
-                  <FaGithub className="text-2xl" />
+              <div className="flex justify-center space-x-6 mt-6 pt-4 border-t border-border">
+                <a 
+                  href="https://github.com/GauravsinhSolanki" 
+                  target="_blank" 
+                  className="text-text-muted hover:text-text p-2"
+                >
+                  <FaGithub className="text-xl" />
                 </a>
-                <a href="https://www.linkedin.com/in/gauravsinh-solanki/" target="_blank" className="text-gray-400 hover:text-blue-400">
-                  <FaLinkedin className="text-2xl" />
+                <a 
+                  href="https://www.linkedin.com/in/gauravsinh-solanki/" 
+                  target="_blank" 
+                  className="text-text-muted hover:text-primary p-2"
+                >
+                  <FaLinkedin className="text-xl" />
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
-      </motion.nav>
+      </nav>
 
       <div className="h-16 md:h-20"></div>
     </>
