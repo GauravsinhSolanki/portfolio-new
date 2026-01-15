@@ -18,18 +18,18 @@ const Testimonials = () => {
   const testimonials: Testimonial[] = [
     {
       id: 1,
-      name: "Alex Johnson",
-      role: "Senior Engineering Manager",
-      company: "TechScale Inc.",
+      name: "Jasmeet Singh",
+      role: "Software Engineering",
+      company: "Brokerlift Inc.",
       content: "Gaurav's ability to architect scalable systems is exceptional. He led the migration of our core platform to microservices, improving performance by 40% while maintaining 99.9% uptime throughout the transition.",
       rating: 5,
       imageColor: "bg-primary/20"
     },
     {
       id: 2,
-      name: "Sarah Chen",
-      role: "Product Director",
-      company: "FinTech Solutions",
+      name: "Frosina Kuzmanovska",
+      role: "Product Manager",
+      company: "Brokerlift Inc.",
       content: "Working with Gaurav on our insurance SaaS platform was a game-changer. He doesn't just write code; he understands business requirements and delivers solutions that drive real value. His full-stack expertise is impressive.",
       rating: 5,
       imageColor: "bg-primary/20"
@@ -45,49 +45,31 @@ const Testimonials = () => {
     },
     {
       id: 4,
-      name: "Priya Patel",
-      role: "Lead Backend Engineer",
-      company: "CloudNative Corp",
+      name: "Harsh Shah",
+      role: "Software Engineer",
+      company: "Brokerlift Inc.",
       content: "I've collaborated with Gaurav on multiple production systems. His attention to testing and system design principles ensures the code he delivers is reliable, maintainable, and scalable.",
       rating: 5,
       imageColor: "bg-primary/20"
     },
     {
       id: 5,
-      name: "David Wilson",
-      role: "VP of Engineering",
-      company: "Enterprise Systems",
+      name: "Nilesh Desai",
+      role: "CEO",
+      company: "Desai Software",
       content: "Gaurav's cloud infrastructure work saved us significant costs while improving performance. His AWS and DevOps expertise is at a senior level, and he communicates complex technical concepts clearly.",
       rating: 5,
       imageColor: "bg-primary/20"
     },
-    {
-      id: 6,
-      name: "Lisa Thompson",
-      role: "Frontend Team Lead",
-      company: "Digital Innovations",
-      content: "As a frontend specialist, I appreciate Gaurav's clean React implementations. He understands modern frameworks deeply and consistently delivers pixel-perfect, performant user interfaces.",
-      rating: 5,
-      imageColor: "bg-primary/20"
-    },
-    {
-      id: 7,
-      name: "Robert Kim",
-      role: "Software Architect",
-      company: "Architecture Partners",
-      content: "Gaurav's system design skills are beyond his years. He approaches problems with both technical depth and practical business sense. Any team would benefit from his expertise.",
-      rating: 5,
-      imageColor: "bg-primary/20"
-    },
-    {
-      id: 8,
-      name: "Emma Davis",
-      role: "Engineering Director",
-      company: "Global Tech",
-      content: "Gaurav's end-to-end ownership of features from discovery to production is remarkable. He bridges gaps between teams and delivers complete solutions that users love.",
-      rating: 5,
-      imageColor: "bg-primary/20"
-    }
+   {
+  id: 5,
+  name: "Brent Stencill",
+  role: "CTO",
+  company: "Brokerlift Inc.",
+  content: "A quick learner who was always available during critical moments. His reliability and dedication to supporting the team made a significant difference in our projects.",
+  rating: 5,
+  imageColor: "bg-primary/20"
+}
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);

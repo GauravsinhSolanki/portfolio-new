@@ -5,10 +5,10 @@ import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown, FaFileDownload } from 'r
 
 const dynamicTitles = [
   "Full Stack Developer",
-  "Frontend Developer", 
-  "SaaS Developer",
   "Cloud Enthusiast",
-  "Cloud Solution Architect"
+  "Frontend Developer", 
+  "Cloud Solution Architect",
+  "SaaS Developer"
 ];
 
 export default function Hero() {
@@ -100,7 +100,7 @@ export default function Hero() {
         </div>
 
         {/* Dynamic Title with Animation */}
-        <div className="mb-6 md:mb-8">
+        <div className="mb-4 md:mb-5">
           <div className="min-h-[3rem] sm:min-h-[3.5rem] md:min-h-[4rem] flex items-center">
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-[#EEEEEE]/80 font-medium">
               <span 
@@ -112,80 +112,89 @@ export default function Hero() {
               </span>
             </h2>
           </div>
-          <p className="text-sm sm:text-base text-[#EEEEEE]/60 mt-2 font-medium">
-            Building scalable, production-ready software systems
-          </p>
         </div>
 
-        {/* Professional Summary - Compact Card */}
-        <div className="mb-6 md:mb-8">
-          <div className="w-full p-4 sm:p-5 md:p-6 bg-gradient-to-br from-[#31363F]/60 via-[#31363F]/40 to-[#31363F]/20 border border-[#76ABAE]/20 rounded-xl shadow-2xl backdrop-blur-sm relative overflow-hidden">
-            {/* Decorative corner accent */}
-            <div className="absolute top-0 right-0 w-24 h-24 bg-[#76ABAE]/10 rounded-bl-full"></div>
-            <div className="absolute bottom-0 left-0 w-20 h-20 bg-[#76ABAE]/5 rounded-tr-full"></div>
-            
-            <div className="relative z-10">
-              {/* Main Content - Compact */}
-              <div className="space-y-3">
-                <p className="text-base sm:text-lg md:text-xl text-[#EEEEEE] leading-snug font-medium">
-                  <span className="text-[#76ABAE] font-bold">2+ years</span> building production systems that real businesses rely on. 
-                  Full-stack engineer who ships features from idea to deployment.
-                </p>
+        <div className="mb-6 md:mb-8 max-w-3xl">
+        <div className="mb-8 md:mb-10 max-w-3xl">
+          {/* Main Description */}
+          <div className="mb-5">
+            <p className="text-lg sm:text-xl text-[#EEEEEE] leading-relaxed">
+              <span className="text-[#76ABAE] font-semibold">2+ years</span> building production systems that real businesses rely on. 
+              Full-stack engineer who ships features from idea to deployment.
+            </p>
+          </div>
 
-                {/* Status Banner - Compact */}
-                <div className="flex items-center gap-2.5 p-2.5 sm:p-3 bg-[#76ABAE]/15 border border-[#76ABAE]/40 rounded-lg">
-                  <div className="flex-shrink-0">
-                    <div className="w-2.5 h-2.5 bg-[#76ABAE] rounded-full animate-pulse"></div>
-                  </div>
-                  <p className="text-[#EEEEEE] font-semibold text-sm sm:text-base">
-                    Available for new opportunities
-                  </p>
-                </div>
+          {/* Sophisticated Status Indicator - Increased font sizes */}
+          <div className="flex items-start gap-4">
+            {/* Animated status dot - Slightly larger */}
+            <div className="flex-shrink-0 mt-1">
+              <div className="relative">
+                <div className="w-4 h-4 bg-[#76ABAE] rounded-full animate-ping absolute opacity-75"></div>
+                <div className="w-4 h-4 bg-[#76ABAE] rounded-full relative"></div>
               </div>
+            </div>
+            
+            {/* Status text - Larger font sizes */}
+            <div>
+              <p className="text-xl sm:text-xl text-[#EEEEEE] font-semibold mb-1">
+                <span className="text-[#76ABAE]">Open to new opportunities</span>
+              </p>
+              <p className="text-base sm:text-lg text-[#EEEEEE]/70">
+                Currently accepting offers for full-time and contract roles
+              </p>
             </div>
           </div>
         </div>
+        </div>
 
-        {/* CTA Buttons - Compact */}
-        <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 mb-20 sm:mb-24 md:mb-20 w-full">
+        {/* CTA Buttons - Clean and Sophisticated */}
+        <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 sm:gap-3 mb-20 sm:mb-24 md:mb-20 w-full max-w-2xl">
           {/* View My Work Button */}
           <button
             onClick={() => smoothScrollTo('projects')}
-            className="w-full sm:flex-1 sm:min-w-[170px] sm:max-w-[220px] px-5 py-3 md:px-6 md:py-3.5 bg-gradient-to-r from-[#76ABAE] to-[#5a8a8d] text-[#EEEEEE] rounded-xl font-semibold hover:from-[#5a8a8d] hover:to-[#76ABAE] transition-all duration-300 shadow-lg hover:shadow-[#76ABAE]/30 hover:-translate-y-0.5 text-center text-sm sm:text-base"
+            className="w-full sm:flex-1 sm:min-w-[170px] sm:max-w-[220px] px-5 py-3 md:px-6 md:py-3.5 bg-gradient-to-r from-[#76ABAE] to-[#5a8a8d] text-[#EEEEEE] rounded-xl font-semibold hover:from-[#5a8a8d] hover:to-[#76ABAE] transition-all duration-300 shadow-lg hover:shadow-[#76ABAE]/30 hover:-translate-y-0.5 text-center text-sm sm:text-base group"
           >
-            View My Work
+            <span className="flex items-center justify-center gap-2">
+              View My Work
+              <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+            </span>
           </button>
           
           {/* Contact Me Button */}
           <button
             onClick={() => smoothScrollTo('contact')}
-            className="w-full sm:flex-1 sm:min-w-[170px] sm:max-w-[220px] px-5 py-3 md:px-6 md:py-3.5 bg-transparent text-[#76ABAE] border-2 border-[#76ABAE] rounded-xl font-semibold hover:bg-[#76ABAE]/10 transition-all duration-300 text-center text-sm sm:text-base"
+            className="w-full sm:flex-1 sm:min-w-[170px] sm:max-w-[220px] px-5 py-3 md:px-6 md:py-3.5 bg-transparent text-[#76ABAE] border-2 border-[#76ABAE] rounded-xl font-semibold hover:bg-[#76ABAE]/10 transition-all duration-300 text-center text-sm sm:text-base group"
           >
-            Contact Me
+            <span className="flex items-center justify-center gap-2">
+              Contact Me
+              <span className="group-hover:translate-x-1 transition-transform duration-200">→</span>
+            </span>
           </button>
           
           {/* Download Resume Button */}
           <button
             onClick={handleDownloadResume}
-            className="w-full sm:flex-1 sm:min-w-[170px] sm:max-w-[220px] px-5 py-3 md:px-6 md:py-3.5 bg-[#31363F] text-[#EEEEEE] border border-[#76ABAE]/30 rounded-xl font-semibold hover:bg-[#31363F]/80 hover:border-[#76ABAE]/50 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base"
+            className="w-full sm:flex-1 sm:min-w-[170px] sm:max-w-[220px] px-5 py-3 md:px-6 md:py-3.5 bg-[#31363F] text-[#EEEEEE] border border-[#76ABAE]/30 rounded-xl font-semibold hover:bg-[#31363F]/80 hover:border-[#76ABAE]/50 transition-all duration-300 flex items-center justify-center gap-2 text-sm sm:text-base group"
           >
-            <FaFileDownload className="text-base" />
+            <FaFileDownload className="text-base group-hover:scale-110 transition-transform duration-200" />
             <span>Download Resume</span>
           </button>
         </div>
       </div>
 
-      {/* Enhanced Scroll Indicator - Highly Visible */}
-      <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 transform -translate-x-1/2 w-full flex justify-center z-20 opacity-70">
+      {/* Enhanced Scroll Indicator - Clean and Visible */}
+      <div className="absolute bottom-6 sm:bottom-8 md:bottom-10 left-1/2 transform -translate-x-1/2 w-full flex justify-center z-20">
         <button
           onClick={() => smoothScrollTo('about')}
           className="flex flex-col items-center transition-all duration-300 cursor-pointer group"
         >
-          <span className="text-base sm:text-lg font-bold mb-2 tracking-wide text-[#76ABAE] drop-shadow-[0_2px_8px_rgba(118,171,174,0.5)]">
+          <span className="text-base sm:text-lg font-bold mb-2 tracking-wide text-[#EEEEEE]/70 group-hover:text-[#76ABAE] transition-colors duration-300">
             Discover More
           </span>
-          <div className="animate-bounce bg-[#76ABAE] p-0 .5 sm:p-0.5 rounded-full group-hover:bg-[#8dbdc0] transition-colors shadow-[0_4px_20px_rgba(118,171,174,0.4)]">
-            <FaArrowDown className="text-xl sm:text-2xl text-[#222831]" />
+          <div className="animate-bounce group-hover:animate-none transition-all duration-300">
+            <div className="p-1.5 sm:p-2 rounded-full bg-[#31363F] border border-[#76ABAE]/30 group-hover:bg-[#76ABAE] group-hover:border-[#76ABAE] transition-all duration-300">
+              <FaArrowDown className="text-lg sm:text-xl text-[#EEEEEE]" />
+            </div>
           </div>
         </button>
       </div>
